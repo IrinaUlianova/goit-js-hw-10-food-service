@@ -25,7 +25,7 @@ const Theme = {
   DARK: 'dark-theme',
 };
 // По умолчанию тема светлая.
-let themeColor = localStorage.getItem('theme-color') || Theme.LIGHT;
+let themeColor = localStorage.getItem('theme') || Theme.LIGHT;
 document.body.classList.add(themeColor);
 
 if (themeColor === Theme.DARK) {
@@ -46,4 +46,10 @@ function onCheckboxThemeChange(event) {
     bodyRef.classList.add(Theme.DARK);
     bodyRef.classList.remove(Theme.LIGHT);
   }
+  savedThemeColor();
+}
+// Функция при перезагрузке сохранить тему.
+function savedThemeColor() {
+  themeColor = themeColor === Theme.LIGHT ? Theme.DARK : Theme.LIGHT;
+  localStorage.setItem('theme', themeColor);
 }
